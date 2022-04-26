@@ -44,3 +44,12 @@ def find_by_user_name(cls,user_name):
     for User in cls.User_accounts_list:
         if User.user_name == user_name:
             return User
+
+@classmethod
+def display_users(cls):
+    """
+    a method that displays a list of all saved users
+    """
+    return cls.User_accounts_list
+    
+             
