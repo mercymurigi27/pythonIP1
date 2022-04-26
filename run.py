@@ -21,7 +21,9 @@ def save_newUser(User):
     saves new user log in details
 
     """
-    User.save_User()  
+    User.save_newUser()  
+
+
 
 def del_newUser(User):
     """
@@ -42,6 +44,29 @@ def display_users():
     return all users saved
     """  
     return user_acc.display_users() 
+
+
+def create_new_cred(cred_username, cred_passward):
+   '''
+    creates new instances of user's credentials
+   '''
+   new_cred = credential(cred_username, cred_passward)
+   return new_cred 
+
+def save_credential(credentials):
+  '''
+  function to save the newly credential detail created
+  '''
+  credentials.save_credential()   
+
+def delete_credential(credentials):
+  '''
+  deletes of unwanted user credentials
+  '''
+  credentials.del_credential()  
+  print("Succefully deleted") 
+
+
 
 
 def main():
