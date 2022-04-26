@@ -122,7 +122,7 @@ def main():
             print("_"*25)
         user_name = input("Enter your Username: ")
         passward = input("Enter your Password: ")
-        print(' WELCOME {user_name.upper()}')
+        print(' WELCOME')
 
 
 
@@ -205,7 +205,7 @@ def main():
           print('CN...for new credentials, DL..to delete credentials, SC..to search for existing credential,DP...to display all saved credentioals')
           short_code= input().upper()
 
-          if short_code== "cr":
+          if short_code== "CN":
             print("\n")
             print("CREATE AND SAVE CREDENTIAL")
             print("_"*25)
@@ -253,7 +253,7 @@ def main():
             print("DELETE CREDENTIAL")
             print("_"*20)
             cred_to_delete = input("Enter Account Name of the credential you want to delete: ")
-          cred_found = find_credential(cred_to_delete)
+          cred_found = search_cred(cred_to_delete)
           delete_credential(cred_found)
           print("Credential successfully deleted!")
 
