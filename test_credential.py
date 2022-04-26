@@ -25,7 +25,7 @@ class Testcredential(unittest.TestCase):
         test_init test case that checks if credential instance were initialized correctly
        '''
 
-       self.assertEqual(self.new_user_credentials.user_name, "mercymurigi")
+       self.assertEqual(self.new_user_credential.user_name, "mercymurigi")
        self.assertEqual(self.new_user_credential.passward, "mercy1234")
 
 
