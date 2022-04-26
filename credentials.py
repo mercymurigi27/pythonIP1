@@ -11,25 +11,25 @@ class credential:
 
     credentials_list = []
 
-def __init__(self,acc_name,passward):
+def __init__(self,user_name,passward):
 
     """
     it defines the objects of our class
 
     args:
     args:
-    acc_name : new_credentials_acc_name.
+    user_name : new_credentials_user_name.
     passward : new_credentials_passward.
 
     """   
-    self.acc_name = acc_name
+    self.user_name = user_name
     self.passward = passward
 
-def generate_password (cls):
-        size = 6
-        genpassword = StringTypes.ascii_uppercase + StringIO.digits + STRING.ascii_lowercase
-        password = '.join(choice(genpassword)for num in range(size))'
-        return     
+# def generate_password (cls):
+#         size = 6
+#         genpassword = StringTypes.ascii_uppercase + StringIO.digits + STRING.ascii_lowercase
+#         password = '.join(choice(genpassword)for num in range(size))'
+#         return     
 
 def save_credentials(self):
     """
@@ -45,13 +45,13 @@ def delete_credentials(self):
 
 
 @classmethod
-def find_by_accountname(cls,acc_name):   
+def search_by_accountname(cls,user_name):   
    """
-   a method that helps the user search through credential class via acc_name and returns if there is a match
+   a method that helps the user search through credential class via user_name and returns if there is a match
    """
-   for credentials in cls.credentials_list:
-       if credentials.acc_name == acc_name:
-           return acc_name
+   for credential in cls.credentials_list:
+       if credential.user_name == user_name:
+           return user_name
 
 @classmethod
 def display_credentials(cls):    
