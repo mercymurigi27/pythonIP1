@@ -9,7 +9,7 @@ class Testuser_acc(unittest.TestCase):
     """
 def setUp(self):
 
-    self.new_User = user_acc("mercymurigi","mercy1234","murigi@yahoo.com")    
+    self.new_User = user_acc("twitter","mercymurigi","mercy1234","murigi@yahoo.com")    
 
 
 def tearDown(self):
@@ -20,7 +20,7 @@ def tearDown(self):
         user_acc.User_accounts_list = []    
 
 def test_init(self):
-
+    self.assertEqual(self.new_User.acc_name,"twitter")
     self.assertEqual(self.new_User.user_name,"mercymurigi")
     self.assertEqual(self.new_User.passward,"mercy123")
     self.assertEqual(self.new_User.email,"murigi@yahoo.com")
@@ -42,7 +42,7 @@ def test_delete_User(self):
 
 
         self.new_User.save_User()
-        test_user = user_acc('Test', 'user_name', 'mercy1234', 'test@user.com')
+        test_user = user_acc('Test', 'acc_name','user_name', 'mercy1234', 'test@user.com')
         test_user.save_user_acc()
 
         self.new_User.delete_User()
@@ -57,7 +57,7 @@ def test_find_user_by_username(self):
         '''
 
         self.new_User.save_user_acc()
-        test_user = user_acc('Test','username', 'test@user.com','mercy1234')
+        test_user = user_acc('Test','acc_name','username', 'test@user.com','mercy1234')
         test_user.save_user_acc()
 
         found_user = user_acc.find_by_username('username')
