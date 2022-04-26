@@ -45,7 +45,7 @@ def delete_credentials(self):
 
 
 @classmethod
-def search_by_accountname(cls,user_name):   
+def search_by_name(cls,user_name):   
    """
    a method that helps the user search through credential class via user_name and returns if there is a match
    """
