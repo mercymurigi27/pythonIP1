@@ -63,6 +63,11 @@ def test_find_user_by_username(self):
         found_user = user_acc.find_by_username('user_name')
         self.assertEqual(found_user.email, test_user.email)
 
+def test_display_users(self):
+     """
+     test to see if the app is displaying the users saved
+     """        
+     self.assertEqual(user_acc.display_users(), user_acc.User_accounts_list)
 
 
 if __name__ == '__main__':
