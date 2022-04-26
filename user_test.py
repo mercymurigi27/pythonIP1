@@ -57,11 +57,11 @@ def test_find_user_by_username(self):
         '''
 
         self.new_User.save_user_acc()
-        test_user = user_acc('Test', 'user_name', 'mercy1234', 'test@user.com')
+        test_user = user_acc('Test','username', 'test@user.com','mercy1234')
         test_user.save_user_acc()
 
-        found_user = user_acc.find_by_username('user_name')
-        self.assertEqual(found_user.email, test_user.email)
+        found_user = user_acc.find_by_username('username')
+        self.assertEqual(found_user.username, test_user.username)
 
 def test_display_users(self):
      """
