@@ -9,7 +9,7 @@ class user_acc:
 
     User_accounts_list = [] #empty user accounts details
 
-def __init__(self,user_name, passward, email):
+def __init__(self,acc_name, user_name, passward, email):
     """
     deifne properties for our object
        
@@ -19,7 +19,7 @@ def __init__(self,user_name, passward, email):
          passward:passward.
          email: new user_acc email address. 
     """ 
-    
+    self.acc_name = acc_name
     self.user_name = user_name
     self.passward = passward
     self.email = email
