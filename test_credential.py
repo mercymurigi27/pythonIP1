@@ -73,7 +73,7 @@ class Testcredential(unittest.TestCase):
 
 
 
-  def test_display_all_cred(self):
+  def test_display_all_credentials(self):
        '''
          test that returns a list of all saved credentials
       '''
