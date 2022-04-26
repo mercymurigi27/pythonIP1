@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.8
 
-from User import find_by_user_name, save_user_acc, user_acc
+
+from User import  user_acc
 from credentials import credential
 import random
 import string
@@ -35,7 +36,7 @@ def del_newUser(User):
 
 def find_User(user_name):
     """
-   finds login details by username
+    finds login details by username
     """  
     return user_acc.find_by_user_name(user_name)
 
@@ -47,30 +48,35 @@ def display_users():
 
 
 def create_new_cred(cred_username, cred_passward):
-   '''
-    creates new instances of user's credentials
-   '''
-   new_cred = credential(cred_username, cred_passward)
-   return new_cred 
+    '''
+      creates new instances of user's credentials
+    '''
+    new_cred = credential(cred_username, cred_passward)
+    return new_cred 
 
 def save_credential(credentials):
-  '''
-  function to save the newly credential detail created
-  '''
-  credentials.save_credential()   
+    '''
+    function to save the newly credential detail created
+    '''
+    credentials.save_credential()   
 
 def delete_credential(credentials):
-   '''
-    deletes of unwanted user credentials
-   '''
-   credentials.del_credential()  
-   print("Succefully deleted") 
+    '''
+      deletes of unwanted user credentials
+    '''
+    credentials.delete_credential()  
+    print("Succefully deleted") 
 
-def display_credentials():
-  '''
-  function that rerturns all saved credentials
-  '''
-  return credential.display_cred()
+def display_credential():
+    '''
+    function that rerturns all saved credentials
+    '''
+    return credential.display_credentials()
+  
+
+def search_cred(user_name):
+    return credential.search_by_name(user_name)
+
 
 def generate_random_passward():
   '''
@@ -105,9 +111,6 @@ def main():
     user_name = input()
     print (f'Hi {user_name}. How can we help today?')
 
-    print ('\n')
-    
-
     while True:
         print('choose an action')
         print(' log in select LG, IF YOU HAVE AN EXISTING ACCOUNT')
@@ -116,71 +119,71 @@ def main():
 
         short_code = input().upper()
 
-        if short_code == "LI":
+        if short_code == "LG":
             print("\n")
             print("LOGIN INTO YOUR ACCOUNT")
             print("_"*25)
-        user_name = input("Enter your Username: ")
-        passward = input("Enter your Password: ")
-        print(' WELCOME')
+            user_name = input("Enter your Username: ")
+            passward = input("Enter your Password: ")
+            print(' WELCOME')
 
 
 
-        if short_code == 'NC':
+        elif short_code == 'NC':
             print('\n')
             print('lets create a new account')
             print('-'*20)
             
             print('acc_name')
-            acc_name = input('enter your account name')
+            acc_name = input('enter your account name:  ')
             while acc_name =="":
-              print("-"*10)
+              # print("-"*10)
               print("Incorrect input!!!")
               print("-"*10)
-            acc_name = input('enter account name')  
+              acc_name = input('enter account name:  ')  
+  
+              print('user_name')
+              user_name = input("enter user name:  ")
+              while user_name == "":
+                print("-"*10)
+                print("Incorrect input!!!")
 
-            print('user_name')
-            user_name = input("enter user name")
-            while user_name == "":
-             print("-"*10)
-             print("Incorrect input!!!")
-             print("-"*10)
-            user_name = input("Enter username: ")
+                user_name = input("Enter username: ")
             
-            print('email')
-            email = input()
+                print('email')
+                email = input()
 
-            print('passward')
-            passward = input("Enter password: ")
-            while len(passward)<4:
-             print("Passward is too short. Must be atleast 4 characters.")
-             print("-"*10)
-            passward = input("Enter password: ")
-
-            verify_passward = input('verify passward:')
+                print('passward')
+                passward = input("Enter password: ")
+                while len(passward)<4:
+                  print("Passward is too short. Must be atleast 4 characters.")
+                  print("-"*10)
+                  passward = input("Enter password: ")
+                  
+                  verify_passward = input('verify passward:')
             
-            while passward != verify_passward:
-              print("-"*15)
-              print("Error:: Passwords did not match. Retry!")
-              print("-"*15)
-              passward = input("Enter password: ")
-            while len(passward)<4:
-               print("Password too short. Must be atleast 4 characters.")
-               print("-"*10)
-               passward = input("Enter password: ")
+                  while passward != verify_passward:
+                    # print("-"*2)
+                    print("Error:: Passwords did not match. Retry!")
+                    # print("-"*15)
+                    passward = input("Enter password: ")
+                  while len(passward)<4:
+                    print("Password too short. Must be atleast 4 characters.")
+                    print("-"*10)
+                    passward = input("Enter password: ")
 
-            verify_passward = input("verify password: ")
+                    verify_passward = input("verify password: ")
 
             
-            print("\n")
-            print(f"-----CONGRATULATIONS {user_name.upper()}!!! YOUR ACCOUNT HAS BEEN CREATED SUCCESSFULLY-----")
-            print("\n")
-            print("-->Kindly proceed to LOGIN")
-            print("\n")
-            print("LOGIN INTO YOUR ACCOUNT")
-            print("_"*25)
-            keyedin_user_name = input("Enter your Username: ")
-            keyedin_passward = input("Enter your Password: ")
+        print("\n")
+        print(f"-----CONGRATULATIONS {user_name.upper()}!!! YOUR ACCOUNT HAS BEEN CREATED SUCCESSFULLY-----")
+        print("\n")
+        print("-->Kindly proceed to LOGIN")
+        print("\n")
+        print("LOGIN INTO YOUR ACCOUNT")
+        print("_"*25)
+        user_name = input("Enter your Username: ")
+        passward = input("Enter your Password: ")
 
         #check if correct username and password have been entered
         while user_name != user_name or passward != passward:
@@ -209,114 +212,93 @@ def main():
             print("\n")
             print("CREATE AND SAVE CREDENTIAL")
             print("_"*25)
-            credential_username = input("Enter Account Name: ")
-          while True:
-              print("\n")
-              print("Select option for password generation")
-              print("-"*10)
-              print("\IN--> to input the password yourself")
-              print("\GT--> to auto-generate password")
-              print("\ex--> to leave prompt")
-
-              p_code = input("Answer: ").upper()
-
-              if p_code == "IN":
+            cred_username= input("Enter user Name: ")
+            while True:
                 print("\n")
-                cred_password = input("Enter Account Password: ")
-                print("-"*20)
-                while len(cred_password)<4:
-                  print("----> Password too short. Must be atleast 4 characters.")
-                  print("-"*10)
+                print("Select option for password generation")
+                print("-"*10)
+                print("\IN--> to input the password yourself")
+                print("\GT--> to auto-generate password")
+                print("\ex--> to leave prompt")
+
+                p_code = input("Answer: ").upper()
+
+                if p_code == "IN":
+                  print("\n")
                   cred_password = input("Enter Account Password: ")
-                break
+                  print("-"*20)
+                  while len(cred_password)<4:
+                    print("----> Password too short. Must be atleast 4 characters.")
+                    print("-"*10)
+                    cred_password = input("Enter Account Password: ")
+                  break
 
-              elif p_code == "GT":
-                cred_password = generate_random_passward()
-                print("-"*20)
-                print("Password successfully generated")
-                print("-"*20)
-                break
-              elif p_code == 'ex':
-                break
-              else:
-                print("Incorrect option. Try again!")
-              created_credential = create_new_cred(credential_username, cred_password)
-              save_credential(created_credential)  
-              print('\n')
-              print('welcome, your account has been created and saved successfully.')
+                elif p_code == "GT":
+                  cred_password = generate_random_passward()
+                  print("-"*20)
+                  print("Password successfully generated")
+                  print("-"*20)
+                  break
+                elif p_code == 'ex':
+                  break
+                else:
+                  print("Incorrect option. Try again!")
 
-              short_code == input().upper() 
+            created_credential = create_new_cred(cred_username, cred_password)
+            save_credential(created_credential)  
+            print('\n')
+            print('welcome, your account has been created and saved successfully.')
 
-          if short_code == "DL":
-               
-            print("\n")
-            print("DELETE CREDENTIAL")
-            print("_"*20)
-            cred_to_delete = input("Enter Account Name of the credential you want to delete: ")
-          cred_found = search_cred(cred_to_delete)
-          delete_credential(cred_found)
-          print("Credential successfully deleted!")
+          # short_code == input().upper() 
 
-          if short_code == "DP":
-           if display_credentials() == None:
-              print("No credentials found to display yet")
-
-          else:
+          elif short_code == "DL":
+                
               print("\n")
-              print("AVAILABLE CREDENTIALS")
+              print("DELETE CREDENTIAL")
               print("_"*20)
-              print("\tAccount Name ---|--- \tPassword")
-              for credential in display_credentials():
-                print(f"\t-->{credential.credential_username} ---|--- {credential.credential_passward}")
+              cred_to_delete = input("Enter Account Name of the credential you want to delete: ")
+              cred_found = search_cred(cred_to_delete)
+              delete_credential(cred_found)
+              print("Credential successfully deleted!")
 
-          if short_code == "SC":
-            print("\n")
-            print("SEARCH AVAILABLE CREDENTIALS")
-            print("_"*20)
-            cred_to_search = input("Enter name to search: ")
-            if search_cred(cred_to_search):
-              found_cred = search_cred(cred_to_search)
-              print(f"Password for Account {cred_to_search}: {found_cred.cred_passward}")
-            else:
-              print("-"*20)
-              print("That Credential was not found!")
-              print("-"*20)
+          elif short_code == "DP":
+              if display_credential() == None:
+                  print("No credentials found to display yet")
 
-              if short_code == "ex":
-               print("\n")
-               print("Are you sure you want to exit this application?\nY/N")
-            response = input("Answer: ").upper()
-            if response == "Y":
-              print("-"*20)
-              print("\tThank you for using this application. \nSee you again next time!")
+              else:
+                  print("\n")
+                  print("AVAILABLE CREDENTIALS")
+                  print("_"*20)
+                  print("\tAccount Name ---|--- \tPassword")
+                  for credential in display_credential():
+                    print(f"\t-->{cred_username} ---|--- {cred_password}")
+
+          elif short_code == "SC":
+              print("\n")
+              print("SEARCH AVAILABLE CREDENTIALS")
+              print("_"*20)
+              cred_to_search = input("Enter name to search: ")
+              if search_cred(cred_to_search):
+                cred_search = search_cred(cred_to_search)
+                print(f"account name is {cred_search.cred_username} and the password is {cred_search.cred_passward} ")
+              else:
+                print("-"*20)
+                print("That Credential was not found!")
+                print("-"*20)
+
+          elif short_code == "ex":
+                print("\n")
+                print("Are you sure you want to exit this application?\nY/N")
+                response = input("Answer: ").upper()
+                if response == "Y":
+                    print("-"*20)
+                    print("\tThank you for using this application. \nSee you again next time!")
           
-        else:
-          print('something went wrong, command not found. check your commans and start again. Thank you')
+          else:
+            print('something went wrong, command not found. check your commans and start again. Thank you')
 
 
-        # elif short_code == 'DC':
-        #     if del_newUser(user_acc):
-        #         print('Are you sure?....Y/N?')
-        #         print('enter username')
-        #         user_name = input()
-        #         print('enter passward')
-        #         passward = input()
-
-        #         print ('\n')
-        #         del_newUser(find_by_user_name(user_name))
-        #         print ('{user_acc.user_name} has been successfully deleted')
-
-        # elif short_code == 'VC':
-        #       if display_users():
-        #           print('here are all the accounts you have saved\n')
-        #           for user in display_users():
-        #               print(f'{user_acc.username}{email} {credential.acc_name} {user_acc.passward}')
-
-        # elif short_code == 'E':
-        #     print('Have a beautiful day')   
-        #     break
-        # 
-
+      
 
 
 if __name__ == '__main__':

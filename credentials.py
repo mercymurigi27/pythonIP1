@@ -1,6 +1,3 @@
-from io import StringIO
-from lib2to3.pgen2.token import STRING
-from xml.dom.minicompat import StringTypes
 
 
 class credential:
@@ -11,52 +8,46 @@ class credential:
 
     credentials_list = []
 
-def __init__(self,user_name,passward):
+    def __init__(self,cred_username,cred_passward):
 
-    """
-    it defines the objects of our class
+        """
+        it defines the objects of our class
 
-    args:
-    args:
-    user_name : new_credentials_user_name.
-    passward : new_credentials_passward.
+        args:
+        args:
+        cred_username : new_credentials_user_name.
+        cred_passward : new_credentials_cred_passward.
 
-    """   
-    self.user_name = user_name
-    self.passward = passward
+        """   
+        self.cred_username = cred_username
+        self.cred_passward = cred_passward
 
-# def generate_password (cls):
-#         size = 6
-#         genpassword = StringTypes.ascii_uppercase + StringIO.digits + STRING.ascii_lowercase
-#         password = '.join(choice(genpassword)for num in range(size))'
-#         return     
+    def save_credential(self):
+        """
+        this saves the credential details into the credential list variable
+        """
+        credential.credentials_list.append(self)
 
-def save_credentials(self):
-    """
-    this saves the credential details into the credential list variable
-    """
-    credential.credentials_list.append(self)
-
-def delete_credentials(self):
-    """
-    deletes users log in credentials from credential list variable
-    """    
-    credential.credentials_list.remove(self)
+    def delete_credential(self):
+        """
+        deletes users log in credentials from credential list variable
+        """    
+        credential.credentials_list.remove(self)
 
 
-@classmethod
-def search_by_name(cls,user_name):   
-   """
-   a method that helps the user search through credential class via user_name and returns if there is a match
-   """
-   for credential in cls.credentials_list:
-       if credential.user_name == user_name:
-           return user_name
+    @classmethod
+    def search_by_name(cls, cred_username):   
+        """
+        a method that helps the user search through credential class via cred_username and returns if there is a match
+        """
+        for credential in cls.credentials_list:
+            if credential.cred_username == cred_username:
+                return credential
 
-@classmethod
-def display_credentials(cls):    
-     """
-     displays a list of all accounts saved in credential class
-     """
+    @classmethod
+    def display_credentials(cls):    
+        """
+        displays a list of all accounts saved in credential class
+        """
 
-     return cls.credentials_list
+        return cls.credentials_list

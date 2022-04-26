@@ -14,19 +14,19 @@ class Testcredential(unittest.TestCase):
       '''
       self.new_user_credential = credential("mercymurigi", "murigi123")
 
-  def tearDown(self):
-      '''
-       method that performs clean up after each test case has run
-      '''
-      credential.credentials_list = []
-
   def test_init(self):
        '''
         test_init test case that checks if credential instance were initialized correctly
        '''
 
-       self.assertEqual(self.new_user_credential.user_name, "mercymurigi")
-       self.assertEqual(self.new_user_credential.passward, "mercy1234")
+       self.assertEqual(self.new_user_credential.cred_username, "mercymurigi")
+       self.assertEqual(self.new_user_credential.cred_passward, "murigi123")
+   
+  def tearDown(self):
+      '''
+       method that performs clean up after each test case has run
+      '''
+      credential.credentials_list = []
 
 
   def test_save_credentials(self):
@@ -68,8 +68,8 @@ class Testcredential(unittest.TestCase):
        test_credential = credential("raymarlvis", "ray@123")
        test_credential.save_credential()
 
-       searched_cred = credential.search_by_name("mercymurigi")
-       self.assertEqual(searched_cred, self.new_user_credential)
+       searched_cred = credential.search_by_name("raymarlvis")
+       self.assertEqual(searched_cred, test_credential.cred_username)
 
 
 
