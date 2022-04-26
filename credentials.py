@@ -1,4 +1,9 @@
-class credentials:
+from io import StringIO
+from lib2to3.pgen2.token import STRING
+from xml.dom.minicompat import StringTypes
+
+
+class credential:
 
     """
     class that generates accounts credentials and passward to save.
@@ -20,17 +25,23 @@ def __init__(self,acc_name,passward):
     self.acc_name = acc_name
     self.passward = passward
 
+def generate_password (cls):
+        size = 6
+        genpassword = StringTypes.ascii_uppercase + StringIO.digits + STRING.ascii_lowercase
+        password = '.join(choice(genpassword)for num in range(size))'
+        return     
+
 def save_credentials(self):
     """
     this saves the credential details into the credential list variable
     """
-    credentials.credentials_list.append(self)
+    credential.credentials_list.append(self)
 
 def delete_credentials(self):
     """
     deletes users log in credentials from credential list variable
     """    
-    credentials.credentials_list.remove(self)
+    credential.credentials_list.remove(self)
 
 
 @classmethod
@@ -42,3 +53,10 @@ def find_by_accountname(cls,acc_name):
        if credentials.acc_name == acc_name:
            return acc_name
 
+@classmethod
+def display_credentials(cls):    
+     """
+     displays a list of all accounts saved in credential class
+     """
+
+     return cls.credentials_list
